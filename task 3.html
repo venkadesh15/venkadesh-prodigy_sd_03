@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Contact Management System</h2>
+
+<button onclick="showForm()">Add New Contact</button>
+<button onclick="showContacts()">View Contact List</button>
+
+<div id="form" style="display:none;">
+  <h3>Add New Contact</h3>
+  <form id="contactForm">
+    Name: <input type="text" id="nameInput"><br>
+    Phone: <input type="text" id="phoneInput"><br>
+    Email: <input type="text" id="emailInput"><br>
+    <input type="button" value="Submit" onclick="addContact()">
+  </form>
+</div>
+
+<div id="contacts" style="display:none;">
+  <h3>Contact List</h3>
+  <ul id="contactList"></ul>
+  <button onclick="editContact()">Edit Contact</button>
+  <button onclick="deleteContact()">Delete Contact</button>
+</div>
+
+<p id="result"></p>
+
+<script>
+var contacts = [];
+
+function showForm() {
+  document.getElementById('form').style.display = 'block';
+  document.getElementById('contacts').style.display = 'none';
+}
+
+function showContacts() {
+  document.getElementById('form').style.display = 'none';
+  document.getElementById('contacts').style.display = 'block';
+  displayContacts();
+}
+
+function addContact() {
+  var contact = {
+    name: document.getElementById('nameInput').value,
+    phone: document.getElementById('phoneInput').value,
+    email: document.getElementById('emailInput').value
+  };
+  contacts.push(contact);
+  document.getElementById('result').innerHTML = 'Contact added successfully.';
+  showContacts();
+}
+
+function displayContacts() {
+  var list = document.getElementById('contactList');
+  list.innerHTML = '';
+  for (var i = 0; i < contacts.length; i++) {
+    var contact = contacts[i];
+    var li = document.createElement('li');
+    li.innerHTML = contact.name + ' - ' + contact.phone + ' - ' + contact.email;
+    list.appendChild(li);
+  }
+}
+
+function editContact() {
+  // Implement contact editing functionality here
+}
+
+function deleteContact() {
+  // Implement contact deletion functionality here
+}
+</script>
+
+</body>
+</html>
